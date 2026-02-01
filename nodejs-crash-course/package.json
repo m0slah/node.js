@@ -6,7 +6,10 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
   },
   "keywords": [
     "nodejs",
@@ -17,7 +20,9 @@
   "license": "ISC",
   "packageManager": "pnpm@10.17.1",
   "devDependencies": {
-    "nodemon": "^3.1.11"
+    "@jest/globals": "^30.2.0",
+    "nodemon": "^3.1.11",
+    "jest": "^30.2.0"
   },
   "dependencies": {
     "dotenv": "^17.2.3"
