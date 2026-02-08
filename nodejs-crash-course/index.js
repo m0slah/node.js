@@ -1,41 +1,13 @@
-import http from "node:http";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const PORT = process.env.PORT || 3000;
+import http from "http";
 
 const server = http.createServer((req, res) => {
-  // Set headers
-  res.setHeader("Content-Type", "application/json");
+  const { method, url } = req;
 
-  // Simple routing
-  if (req.method === "GET" && req.url === "/") {
-    res.statusCode = 200;
-    res.end(
-      JSON.stringify({
-        message: "🚀 Pure Node.js server is running",
-      }),
-    );
-  } else if (req.method === "GET" && req.url === "/about") {
-    res.statusCode = 200;
-    res.end(
-      JSON.stringify({
-        message: "About page",
-      }),
-    );
-  } else {
-    res.statusCode = 404;
-    res.end(
-      JSON.stringify({
-        error: "Route not found",
-      }),
-    );
-  }
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end(`Method: ${method}, URL: ${url}`);
 });
 
+const PORT = 3000;
 server.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}/`);
 });
-
-export default server;
