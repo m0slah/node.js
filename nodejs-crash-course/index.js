@@ -1,10 +1,22 @@
 import http from "http";
+import url from "url";
 
 const server = http.createServer((req, res) => {
-  const { method, url } = req;
+  const parsedUrl = url.parse(req.url, true);
 
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end(`Method: ${method}, URL: ${url}`);
+  const method = req.method;
+  const pathname = parsedUrl.pathname;
+  const query = parsedUrl.query;
+
+  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end(
+    JSON.stringify({
+      method,
+      url: req.url,
+      pathname,
+      query,
+    })
+  );
 });
 
 const PORT = 3000;
