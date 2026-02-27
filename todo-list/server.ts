@@ -4,6 +4,9 @@ import { router } from './router.js';
 
 const PORT = 3000;
 
+console.log('🚀 Starting server...');
+console.log(import.meta);
+
 const server = http.createServer(async (req: IncomingMessage, res: ServerResponse) => {
   applyCors(res);
   if (handlePreflight(req, res)) return;
